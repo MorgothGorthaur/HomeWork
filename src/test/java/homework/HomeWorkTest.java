@@ -20,7 +20,7 @@ class HomeWorkTest {
     @CsvSource({"0, 1, 0.1, 11", "0.2, 2.8, 0.002, 1301", "0, 100, 0.0001, 1000001"})
     void testGetStepSize(double start, double end, double step, int expected) {
         homeWork = new HomeWorkImpl(start, end, step);
-        assertEquals(homeWork.getStepSize(), expected);
+        assertEquals(expected, homeWork.getStepSize());
     }
 
 
