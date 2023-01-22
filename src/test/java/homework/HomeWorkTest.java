@@ -49,7 +49,13 @@ class HomeWorkTest {
                 .isCloseTo(expectedOperandValue, Percentage.withPercentage(PERCENTAGE));
     }
 
-
+    @ParameterizedTest
+    @CsvSource({"0.2, 2.8, 0.002, 51", "0.2, 0.3, 0.002, 0",
+            "0.302, 2.3, 0.002, 0", "2.302, 2.8, 0.002, 249"})
+    void testGetMaxFunctionValue_testByIndexValue(double start, double end, double step, int expectedIndexValue) {
+        homeWork = new HomeWorkImpl(start, end, step);
+        assertThat(homeWork.getMaxFunctionValue().index()).isEqualTo(expectedIndexValue);
+    }
 
     @ParameterizedTest
     @CsvSource({"0.2, 2.8, 0.002, -7.692", "0.2, 0.3, 0.002, 3.149",
