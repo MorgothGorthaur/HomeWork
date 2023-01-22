@@ -20,7 +20,7 @@ class HomeWorkTest {
     @CsvSource({"0, 1, 0.1, 11", "0.2, 2.8, 0.002, 1301", "0, 100, 0.0001, 1000001"})
     void testGetStepSize(double start, double end, double step, int expected) {
         homeWork = new HomeWorkImpl(start, end, step);
-        assertEquals(expected, homeWork.getStepSize());
+        assertThat(homeWork.getStepSize()).isEqualTo(expected);
     }
 
 
@@ -35,19 +35,45 @@ class HomeWorkTest {
     @ParameterizedTest
     @CsvSource({"0.2, 2.8, 0.002, 16.683", "0.2, 0.3, 0.002, 3.314",
             "0.302, 2.3, 0.002, 16.683", "2.302, 2.8, 0.002, -2.453"})
-    void testGetMaxFunctionValue(double start, double end, double step, double expected) {
+    void testGetMaxFunctionValue_testByFunctionValue(double start, double end, double step, double expectedFunctionValue) {
         homeWork = new HomeWorkImpl(start, end, step);
         assertThat(homeWork.getMaxFunctionValue().function())
-                .isCloseTo(expected, Percentage.withPercentage(PERCENTAGE));
+                .isCloseTo(expectedFunctionValue, Percentage.withPercentage(PERCENTAGE));
     }
+    @ParameterizedTest
+    @CsvSource({"0.2, 2.8, 0.002, 0.302", "0.2, 0.3, 0.002, 0.2",
+            "0.302, 2.3, 0.002, 0.302", "2.302, 2.8, 0.002, 2.8"})
+    void testGetMaxFunctionValue_testByOperandValue(double start, double end, double step, double expectedOperandValue) {
+        homeWork = new HomeWorkImpl(start, end, step);
+        assertThat(homeWork.getMaxFunctionValue().operand())
+                .isCloseTo(expectedOperandValue, Percentage.withPercentage(PERCENTAGE));
+    }
+
+
 
     @ParameterizedTest
     @CsvSource({"0.2, 2.8, 0.002, -7.692", "0.2, 0.3, 0.002, 3.149",
             "0.302, 2.3, 0.002, 13.8", "2.302, 2.8, 0.002, -7.692"})
-    void testGetMinFunctionValue(double start, double end, double step, double expected) {
+    void testGetMinFunctionValue_testByFunctionValue(double start, double end, double step, double expectedFunctionValue) {
         homeWork = new HomeWorkImpl(start, end, step);
         assertThat(homeWork.getMinFunctionValue().function())
-                .isCloseTo(expected, Percentage.withPercentage(PERCENTAGE));
+                .isCloseTo(expectedFunctionValue, Percentage.withPercentage(PERCENTAGE));
+    }
+    @ParameterizedTest
+    @CsvSource({"0.2, 2.8, 0.002, 2.302", "0.2, 0.3, 0.002, 0.3",
+            "0.302, 2.3, 0.002, 2.0", "2.302, 2.8, 0.002, 2.302"})
+    void testGetMinFunctionValue_testByOperandValue(double start, double end, double step, double expectedOperandValue) {
+        homeWork = new HomeWorkImpl(start, end, step);
+        assertThat(homeWork.getMinFunctionValue().operand())
+                .isCloseTo(expectedOperandValue, Percentage.withPercentage(PERCENTAGE));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0.2, 2.8, 0.002, 1051", "0.2, 0.3, 0.002, 50",
+            "0.302, 2.3, 0.002, 849", "2.302, 2.8, 0.002, 0"})
+    void testGetMinFunctionValue_testByIndexValue(double start, double end, double step, int expectedIndexValue) {
+        homeWork = new HomeWorkImpl(start, end, step);
+        assertThat(homeWork.getMinFunctionValue().index()).isEqualTo(expectedIndexValue);
     }
 
     @ParameterizedTest
