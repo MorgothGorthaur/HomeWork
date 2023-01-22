@@ -30,20 +30,20 @@ public class Main {
                     case "get max value" -> homeWork.getMaxFunctionValue();
                     case "get sum" -> homeWork.getSumOfFunctions();
                     case "get average" -> homeWork.getFunctionAverage();
-                    case "evaluate" -> homeWork.evaluateExpression(getDouble());
-                    case "get by id" -> homeWork.getById((int) getDouble());
+                    case "evaluate" -> homeWork.evaluateExpression(setDouble());
+                    case "get by id" -> homeWork.getById((int) setDouble());
                     case "get functions" -> Arrays.toString(homeWork.getFunctions());
                     case "get operands" -> Arrays.toString(homeWork.getOperands());
                     case "get results" -> Arrays.toString(homeWork.getResults());
                     case "get careful results" -> homeWork.toString();
-                    case "get closest" -> homeWork.getClosestOperand(getDouble());
+                    case "get closest" -> homeWork.getClosestOperand(setDouble());
                     case "menu" -> getMenu();
                     case "exit" -> "exit";
                     case "", "\n" -> "\n";
                     default -> "unknown operation! print \"menu\" to get list of available operations!";
                 });
     }
-    private double getDouble() throws IOException {
+    private double setDouble() throws IOException {
         try {
             System.out.print("insert your value: ");
             return Double.parseDouble(reader.readLine());
@@ -53,11 +53,11 @@ public class Main {
     }
     private HomeWork setParams() throws IOException {
         System.out.println("start:");
-        var start = getDouble();
+        var start = setDouble();
         System.out.println("end:");
-        var end = getDouble();
+        var end = setDouble();
         System.out.println("step:");
-        var step = getDouble();
+        var step = setDouble();
         return new HomeWorkImpl(start, end, step);
     }
     private String getMenu() {
