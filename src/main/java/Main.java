@@ -30,7 +30,7 @@ public class Main {
                     case "get max value" -> homeWork.getMaxFunctionValue();
                     case "get sum" -> homeWork.getSumOfFunctions();
                     case "get average" -> homeWork.getFunctionAverage();
-                    case "evaluate" -> homeWork.evaluateExpression(setDouble());
+                    case "evaluate" -> homeWork.evaluateFunction(setDouble());
                     case "get by id" -> homeWork.getById((int) setDouble());
                     case "get functions" -> Arrays.toString(homeWork.getFunctions());
                     case "get operands" -> Arrays.toString(homeWork.getOperands());

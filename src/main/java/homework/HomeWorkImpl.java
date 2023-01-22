@@ -7,7 +7,6 @@ import homework.exceptions.TooBigStepValueException;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.stream.DoubleStream;
 
 public class HomeWorkImpl implements HomeWork {
     private static final double a = 2.3;
@@ -58,7 +57,7 @@ public class HomeWorkImpl implements HomeWork {
      * x > 2.3 + EPS : y = 3 * a * tg(x)
      **/
     @Override
-    public double evaluateExpression(double x) {
+    public double evaluateFunction(double x) {
         if (x <= 0.3 + EPS) return 1.5 * a * Math.pow(Math.cos(x), 2);
         else if (x <= 2.3 + EPS) return Math.pow((x - 2), 2) + 6 * a;
         else return 3 * a * Math.tan(x);
@@ -99,7 +98,7 @@ public class HomeWorkImpl implements HomeWork {
         results = new Result[size];
         var tmp = start;
         for (var i = 0; i < size; i++) {
-            results[i] = new Result(i, tmp, evaluateExpression(tmp));
+            results[i] = new Result(i, tmp, evaluateFunction(tmp));
             tmp += step;
         }
     }

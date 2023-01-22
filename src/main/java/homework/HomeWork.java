@@ -6,7 +6,7 @@ public interface HomeWork {
     double getSumOfFunctions();
     double[] getOperands();
     double[] getFunctions();
-    double evaluateExpression(double x);
+    double evaluateFunction(double x);
     Result getMaxFunctionValue();
     Result getMinFunctionValue();
     Result getById(int id);

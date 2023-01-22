@@ -5,7 +5,6 @@ import homework.exceptions.BadIdValueException;
 import homework.exceptions.StartValueIsBiggerThenEndValueException;
 import homework.exceptions.TooBigStepValueException;
 import org.assertj.core.data.Percentage;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -29,7 +28,7 @@ class HomeWorkTest {
     @CsvSource({"0.14, 3.383", "0.3, 3.149", "1.5, 14.05", "2.3, 13.89", "2.8, -2.453"})
     void testEvaluateExpression(double x, double expected) {
         homeWork = new HomeWorkImpl(0.2, 2.8, 0.002);
-        assertThat(homeWork.evaluateExpression(x))
+        assertThat(homeWork.evaluateFunction(x))
                 .isCloseTo(expected, Percentage.withPercentage(PERCENTAGE));
     }
 
