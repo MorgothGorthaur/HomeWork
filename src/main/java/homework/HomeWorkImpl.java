@@ -58,10 +58,10 @@ public class HomeWorkImpl implements HomeWork {
      * x > 2.3 + EPS : y = 3 * a * tg(x)
      **/
     @Override
-    public Result evaluateExpression(double x) {
-        if (x <= 0.3 + EPS) return new Result(x, 1.5 * a * Math.pow(Math.cos(x), 2));
-        else if (x <= 2.3 + EPS) return new Result(x, Math.pow((x - 2), 2) + 6 * a);
-        else return new Result(x, 3 * a * Math.tan(x));
+    public double evaluateExpression(double x) {
+        if (x <= 0.3 + EPS) return 1.5 * a * Math.pow(Math.cos(x), 2);
+        else if (x <= 2.3 + EPS) return Math.pow((x - 2), 2) + 6 * a;
+        else return 3 * a * Math.tan(x);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class HomeWorkImpl implements HomeWork {
         results = new Result[size];
         var tmp = start;
         for (var i = 0; i < size; i++) {
-            results[i] = evaluateExpression(tmp);
+            results[i] = new Result(i, tmp, evaluateExpression(tmp));
             tmp += step;
         }
     }
