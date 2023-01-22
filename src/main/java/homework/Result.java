@@ -1,4 +1,4 @@
 package homework;
 
-public record Result(double operand, double function) {
+public record Result(double index, double operand, double function) {
 }
