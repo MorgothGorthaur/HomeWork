@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class HomeWorkTest {
     HomeWork homeWork;
@@ -26,7 +25,7 @@ class HomeWorkTest {
 
     @ParameterizedTest
     @CsvSource({"0.14, 3.383", "0.3, 3.149", "1.5, 14.05", "2.3, 13.89", "2.8, -2.453"})
-    void testEvaluateExpression(double x, double expected) {
+    void testEvaluateFunction(double x, double expected) {
         homeWork = new HomeWorkImpl(0.2, 2.8, 0.002);
         assertThat(homeWork.evaluateFunction(x))
                 .isCloseTo(expected, Percentage.withPercentage(PERCENTAGE));
